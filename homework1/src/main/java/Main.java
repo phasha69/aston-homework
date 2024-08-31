@@ -1,10 +1,18 @@
 
 import collections.ArrayList;
+import customclasses.Person;
 
 public class Main {
     public static void main(String[] args) {
-        Integer[] x = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-        ArrayList<Integer> arrayList1 = new ArrayList<>(x);
-        System.out.println(arrayList1);
+        int count = 10;
+        ArrayList<Person> persons = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            persons.add(Person.createRandomPerson());
+        }
+        persons.forEach(System.out::println);
+
+        persons.remove(persons.get(0));
+        System.out.println();
+        persons.forEach(System.out::println);
     }
 }

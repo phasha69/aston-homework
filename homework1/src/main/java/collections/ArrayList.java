@@ -28,15 +28,29 @@ public class ArrayList<T> implements Iterable<T> {
         this(Arrays.copyOf(list.array, list.length));
     }
 
+    private void ensureCapacity(int minCapacity) {
+        if (minCapacity > array.length) {
+            int newCapacity = Math.max(array.length * 3 / 2 + 1, minCapacity);
+            array = Arrays.copyOf(array, newCapacity);
+        }
+    }
+
     public void add(T item) {
         if (item == null) throw new IllegalArgumentException("Added null");
-        if (length == array.length) {
-            // Увеличиваем размер массива на 50%
-            T[] newArray = (T[]) new Object[(int) (length * 1.5)];
-            System.arraycopy(array, 0, newArray, 0, length);
-            array = newArray;
-        }
+        ensureCapacity(length + 1);
         array[length++] = item;
+    }
+
+    public void add(T item, int index) {
+        if (index < 0 || index > length) throw new IndexOutOfBoundsException("Index: " + index + ", Length: " + length);
+        if (item == null) throw new IllegalArgumentException("Added null");
+        ensureCapacity(length + 1);
+
+        // Сдвигаем элементы вправо, начиная с конца, чтобы освободить место для нового элемента
+        System.arraycopy(array, index, array, index +1, length - index);
+
+        array[index] = item;
+        length++;
     }
 
     public int length() {

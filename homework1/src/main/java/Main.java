@@ -25,14 +25,27 @@ public class Main {
         arrayList4.add(555);
 
 
-        System.out.println(arrayList1 + "   -   " + arrayList1.length()); // верно
+        System.out.println(arrayList1 + "   -   " + arrayList1.length());
 
-        System.out.println(arrayList2 + "   -   " + arrayList2.length()); // верно
+        System.out.println(arrayList2 + "   -   " + arrayList2.length());
 
-        System.out.println(arrayList3 + "   -   " + arrayList3.length()); // верно
+        System.out.println(arrayList3 + "   -   " + arrayList3.length());
 
-        System.out.println(arrayList4 + "   -   " + arrayList4.length()); // не верно
+        System.out.println(arrayList4 + "   -   " + arrayList4.length());
 
+        arrayList1.add(444,0);
+        arrayList2.add(444,arrayList2.length());
+        arrayList3.add(444,4);
+        arrayList3.add(444,arrayList3.length());
+
+
+        System.out.println(arrayList1 + "   -   " + arrayList1.length());
+
+        System.out.println(arrayList2 + "   -   " + arrayList2.length());
+
+        System.out.println(arrayList3 + "   -   " + arrayList3.length());
+
+        System.out.println(arrayList4 + "   -   " + arrayList4.length());
 
     }
 }

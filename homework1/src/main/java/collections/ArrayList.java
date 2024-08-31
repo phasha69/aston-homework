@@ -91,7 +91,6 @@ public class ArrayList<T> implements Iterable<T> {
 
     public void remove(int index) {
         validData(index);
-        T[] newArray;
         System.arraycopy(array, 0, array, index, length - index - 1);
         length--;
     }

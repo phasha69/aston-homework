@@ -8,8 +8,7 @@ public class ArrayList<T> implements Iterable<T> {
     private int length;
 
     public ArrayList() {
-        this.array = (T[]) new Object[10];
-        this.length = 0;
+        clear();
     }
 
     public ArrayList(T[] array) {
@@ -36,21 +35,78 @@ public class ArrayList<T> implements Iterable<T> {
     }
 
     public void add(T item) {
-        if (item == null) throw new IllegalArgumentException("Added null");
+        validData(item);
         ensureCapacity(length + 1);
         array[length++] = item;
     }
 
     public void add(T item, int index) {
-        if (index < 0 || index > length) throw new IndexOutOfBoundsException("Index: " + index + ", Length: " + length);
-        if (item == null) throw new IllegalArgumentException("Added null");
+        validData(index, item);
         ensureCapacity(length + 1);
 
         // Сдвигаем элементы вправо, начиная с конца, чтобы освободить место для нового элемента
-        System.arraycopy(array, index, array, index +1, length - index);
+        System.arraycopy(array, index, array, index + 1, length - index);
 
         array[index] = item;
         length++;
+    }
+
+    public T get(int index) {
+        validData(index);
+        return array[index];
+    }
+
+    public void set(T item, int index) {
+        validData(index, item);
+        array[index] = item;
+    }
+
+    public void clear() {
+        this.array = (T[]) new Object[10];
+        this.length = 0;
+    }
+
+    public boolean contains(T item) {
+        validData(item);
+        for (int i = 0; i < length; i++) {
+            if (array[i] != null && array[i].equals(item)) return true;
+        }
+        return false;
+    }
+
+    public int getIndex(T item) {
+        validData(item);
+        for (int i = 0; i < length; i++) {
+            if (array[i] != null && array[i].equals(item)) return i;
+        }
+        return -1;
+    }
+
+    public void remove(T item) {
+        int index = getIndex(item);
+        if (index > 0) {
+            remove(index);
+        }
+    }
+
+    public void remove(int index) {
+        validData(index);
+        T[] newArray;
+        System.arraycopy(array, 0, array, index, length - index - 1);
+        length--;
+    }
+
+    private void validData(int index, T item) {
+        validData(index);
+        validData(item);
+    }
+
+    private void validData(int index) {
+        if (index < 0 || index > length) throw new IndexOutOfBoundsException("Index: " + index + ", Length: " + length);
+    }
+
+    private void validData(T item) {
+        if (item == null) throw new IllegalArgumentException("Added null");
     }
 
     public int length() {

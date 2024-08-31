@@ -36,16 +36,20 @@ public class Main {
         arrayList1.add(444,0);
         arrayList2.add(444,arrayList2.length());
         arrayList3.add(444,4);
+        arrayList3.remove(Integer.valueOf(444));
+        arrayList3.remove(Integer.valueOf(444));
+        arrayList3.clear();
+        arrayList3.remove(Integer.valueOf(444));
         arrayList3.add(444,arrayList3.length());
 
 
-        System.out.println(arrayList1 + "   -   " + arrayList1.length());
+        System.out.println(arrayList1 + "   1-   " + arrayList1.length());
 
-        System.out.println(arrayList2 + "   -   " + arrayList2.length());
+        System.out.println(arrayList2 + "   2-   " + arrayList2.length());
 
-        System.out.println(arrayList3 + "   -   " + arrayList3.length());
+        System.out.println(arrayList3 + "   3-   " + arrayList3.length());
 
-        System.out.println(arrayList4 + "   -   " + arrayList4.length());
+        System.out.println(arrayList4 + "   4-   " + arrayList4.length());
 
     }
 }

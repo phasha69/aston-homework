@@ -8,12 +8,12 @@ public class ArrayList<T> implements Iterable<T> {
     private int length;
 
     public ArrayList() {
-        clear();
+        this.array = (T[]) new Object[10];
+        this.length = 0;
     }
 
     public ArrayList(T[] array) {
-        this.array = (T[]) new Object[array.length];
-        System.arraycopy(array, 0, this.array, 0, array.length);
+        this.array = Arrays.copyOf(array, array.length);
         this.length = array.length;
     }
 
@@ -43,10 +43,9 @@ public class ArrayList<T> implements Iterable<T> {
     public void add(T item, int index) {
         validData(index, item);
         ensureCapacity(length + 1);
-
-        // Сдвигаем элементы вправо, начиная с конца, чтобы освободить место для нового элемента
-        System.arraycopy(array, index, array, index + 1, length - index);
-
+        if (index < length) {
+            System.arraycopy(array, index, array, index + 1, length - index);
+        }
         array[index] = item;
         length++;
     }
@@ -62,37 +61,33 @@ public class ArrayList<T> implements Iterable<T> {
     }
 
     public void clear() {
-        this.array = (T[]) new Object[10];
+        Arrays.fill(array, null);
         this.length = 0;
     }
 
     public boolean contains(T item) {
-        validData(item);
-        for (int i = 0; i < length; i++) {
-            if (array[i] != null && array[i].equals(item)) return true;
-        }
-        return false;
+        return getIndex(item) >= 0;
     }
 
     public int getIndex(T item) {
         validData(item);
         for (int i = 0; i < length; i++) {
-            if (array[i] != null && array[i].equals(item)) return i;
+            if (array[i].equals(item)) return i;
         }
         return -1;
     }
 
     public void remove(T item) {
         int index = getIndex(item);
-        if (index > 0) {
+        if (index >= 0) {
             remove(index);
         }
     }
 
     public void remove(int index) {
         validData(index);
-        System.arraycopy(array, 0, array, index, length - index - 1);
-        length--;
+        System.arraycopy(array, index + 1, array, index, length - index - 1);
+        array[--length] = null;
     }
 
     private void validData(int index, T item) {
@@ -101,7 +96,8 @@ public class ArrayList<T> implements Iterable<T> {
     }
 
     private void validData(int index) {
-        if (index < 0 || index > length) throw new IndexOutOfBoundsException("Index: " + index + ", Length: " + length);
+        if (index < 0 || index > length + 1)
+            throw new IndexOutOfBoundsException("Index: " + index + ", Length: " + length);
     }
 
     private void validData(T item) {
@@ -127,14 +123,12 @@ public class ArrayList<T> implements Iterable<T> {
 
         @Override
         public boolean hasNext() {
-            return currentIndex < length && array[currentIndex + 1] != null;
+            return currentIndex < length;
         }
 
         @Override
         public T next() {
-            if (!hasNext()) {
-                throw new IllegalStateException("No more elements");
-            }
+            if (!hasNext()) throw new IllegalStateException("No more elements");
             return array[currentIndex++];
         }
     }

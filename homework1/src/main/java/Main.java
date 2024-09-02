@@ -1,6 +1,7 @@
 
 import collections.ArrayList;
 import customclasses.Person;
+import customclasses.PersonAgeComparator;
 import sort.QuickSort;
 
 public class Main {
@@ -17,5 +18,9 @@ public class Main {
         QuickSort.sort(persons);
         persons.forEach(System.out::println);
 
+        System.out.println();
+
+        QuickSort.sort(persons,new PersonAgeComparator());
+        persons.forEach(System.out::println);
     }
 }

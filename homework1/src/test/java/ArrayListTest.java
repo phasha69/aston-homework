@@ -307,4 +307,27 @@ public class ArrayListTest {
         assertEquals("Added null", exception.getMessage());
     }
 
+    @Test
+    public void getIndexExist() {
+        ArrayList<Object> objects = new ArrayList<>();
+        String actual = "String obj";
+        objects.add(actual);
+        assertTrue(objects.getIndex(actual) >= 0,"Индекс не должен быть отрицательным");
+
+    }
+
+    @Test
+    public void getIndexNotExist() {
+        ArrayList<Object> objects = new ArrayList<>();
+        String actual = "String obj";
+        assertFalse(objects.getIndex(actual) >= 0,"Индекс должен быть отрицательным");
+    }
+
+    @Test
+    public void getIndexElementIsNull() {
+        ArrayList<Object> objects = new ArrayList<>();
+        Exception exception = assertThrows(RuntimeException.class, ()->{objects.getIndex(null);});
+        assertEquals("Added null",exception.getMessage());
+    }
+
 }

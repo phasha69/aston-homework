@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class ArrayListTest {
@@ -14,23 +15,24 @@ public class ArrayListTest {
     @Test
     public void TestConstructorWithoutParameter() {
         ArrayList<Object> list = new ArrayList<>(0);
-        assertEquals(0, list.length());
-        assertEquals("[]", list.toString());
+        assertEquals(0, list.length(), "Длина нового списка должна быть 0");
+        assertEquals("[]", list.toString(), "Пустой список должен представляться как '[]'");
     }
 
     @Test
     public void testConstructorWithInitialCapacity() {
         ArrayList<Object> list = new ArrayList<>(100);
-        assertEquals(0, list.length());
-        assertEquals("[]", list.toString());
+        assertEquals(0, list.length(), "Длина нового списка должна быть 0");
+        assertEquals("[]", list.toString(), "Пустой список должен представляться как '[]'");
     }
 
     @Test
     public void testConstructorWithNegativeInitialCapacity() {
-        try {
-            ArrayList<Object> list = new ArrayList<>(-1);
-        } catch (RuntimeException e) {
-            assertEquals("Initial capacity cannot be negative", e.getMessage());
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            new ArrayList<>(-1);
+        });
+        {
+            assertEquals("Initial capacity cannot be negative", exception.getMessage());
         }
     }
 
@@ -38,7 +40,7 @@ public class ArrayListTest {
     public void testConstructorWithArray() {
         Integer[] ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
         ArrayList<Integer> integers = new ArrayList<>(ints);
-        assertEquals(10, integers.length());
+        assertEquals(10, integers.length(), "Длина списка должна быть 10");
         assertEquals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]", integers.toString());
     }
 
@@ -47,8 +49,8 @@ public class ArrayListTest {
         Object[] objects = {new Object(), new Object(), 1, "123"};
         ArrayList<Object> arrayList1 = new ArrayList<>(objects);
         ArrayList<Object> arrayList2 = new ArrayList<>(arrayList1);
-        assertEquals(arrayList1.length(), arrayList2.length());
-        assertEquals(arrayList1.toString(), arrayList2.toString());
+        assertEquals(arrayList1.length(), arrayList2.length(), "Длины двух списков должны совпадать");
+        assertEquals(arrayList1.toString(), arrayList2.toString(), "Списки должны быть идентичны");
     }
 
     @Test
@@ -57,17 +59,17 @@ public class ArrayListTest {
         for (int i = 0; i < 1000; i++) {
             list.add(i);
         }
-        assertEquals(1000, list.length());
+        assertEquals(1000, list.length(), "Длина списка должна быть 1000 после добавления 1000 элементов");
     }
 
     @Test
     public void testAddNull() {
         ArrayList<Object> objects = new ArrayList<>();
-        try {
+        Exception exception = assertThrows(RuntimeException.class, () -> {
             objects.add(null);
-        } catch (RuntimeException e) {
-            assertEquals("Added null", e.getMessage());
-        }
+        });
+        assertEquals("Added null", exception.getMessage());
+
     }
 
     @Test
@@ -79,7 +81,7 @@ public class ArrayListTest {
         String actual = "String Object";
         int index = objects.length() / 2;
         objects.add(actual, index);
-        assertEquals(objects.get(index), actual);
+        assertEquals(objects.get(index), actual, "Элемент должен быть добавлен в середину списка");
     }
 
     @Test
@@ -91,7 +93,7 @@ public class ArrayListTest {
         String actual = "String Object";
         int index = 0;
         objects.add(actual, index);
-        assertEquals(objects.get(index), actual);
+        assertEquals(objects.get(index), actual, "Элемент должен быть добавлен в начало списка");
     }
 
     @Test
@@ -103,7 +105,7 @@ public class ArrayListTest {
         String actual = "String Object";
         int index = objects.length();
         objects.add(actual, index);
-        assertEquals(objects.get(index), actual);
+        assertEquals(objects.get(index), actual, "Элемент должен быть добавлен в конец списка");
     }
 
     @Test
@@ -114,11 +116,11 @@ public class ArrayListTest {
         }
         String actual = "String Object";
         int index = -1;
-        try {
+        Exception exception = assertThrows(RuntimeException.class, () -> {
             objects.add(actual, index);
-        } catch (RuntimeException e) {
-            assertEquals("Index: " + index + ", Length: " + objects.length(), e.getMessage());
-        }
+        });
+        assertEquals("Index: " + index + ", Length: " + objects.length(), exception.getMessage());
+
     }
 
     @Test
@@ -128,12 +130,14 @@ public class ArrayListTest {
             objects.add(new Object());
         }
         String actual = "String Object";
-        int index = objects.length() + 1;
-        try {
+        int index = objects.length() + 1;  // Индекс, превышающий длину списка
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
             objects.add(actual, index);
-        } catch (RuntimeException e) {
-            assertEquals("Index: " + index + ", Length: " + objects.length(), e.getMessage());
-        }
+        });
+
+        // Проверка того, что сообщение об ошибке соответствует ожидаемому формату
+        assertEquals("Index: " + index + ", Length: " + objects.length(), exception.getMessage());
     }
 
     @Test
@@ -143,7 +147,7 @@ public class ArrayListTest {
             objects.add(i);
         }
         Object actual = objects.get(3);
-        assertEquals(3, actual);
+        assertEquals(3, actual, "Элемент по индексу 3 должен быть равен 3");
     }
 
     @Test
@@ -152,11 +156,11 @@ public class ArrayListTest {
         for (int i = 0; i < 10; i++) {
             objects.add(i);
         }
-        try {
-            Object actual = objects.get(-3);
-        } catch (RuntimeException e) {
-            assertEquals("Index: " + -3 + ", Length: " + objects.length(), e.getMessage());
-        }
+        int index = -1;
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            objects.get(index);
+        });
+        assertEquals("Index: " + index + ", Length: " + objects.length(), exception.getMessage());
     }
 
     @Test
@@ -165,11 +169,11 @@ public class ArrayListTest {
         for (int i = 0; i < 10; i++) {
             objects.add(i);
         }
-        try {
-            Object actual = objects.get(objects.length());
-        } catch (RuntimeException e) {
-            assertEquals("Index " + objects.length() + " out of bounds for length " + objects.length(), e.getMessage());
-        }
+        int index = objects.length();
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            objects.get(index);
+        });
+        assertEquals("Index " + index + " out of bounds for length " + objects.length(), exception.getMessage());
     }
 
     @Test
@@ -178,10 +182,85 @@ public class ArrayListTest {
         for (int i = 0; i < 10; i++) {
             objects.add(i);
         }
-        try {
-            Object actual = objects.get(objects.length() + 1);
-        } catch (RuntimeException e) {
-            assertEquals("Index " + (objects.length() + 1) + " out of bounds for length " + objects.length(), e.getMessage());
+        int index = objects.length() + 1;
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            objects.get(index);
+        });
+        assertEquals("Index: " + index + ", Length: " + objects.length(), exception.getMessage());
+    }
+
+    @Test
+    public void testSetMidElement() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(i);
         }
+        int index = objects.length() / 2;
+        String actual = "new String";
+        objects.set(actual, index);
+        assertEquals(objects.get(index), actual, "Элемент в середине списка должен быть изменён");
+    }
+
+    @Test
+    public void testSetFirstElement() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(i);
+        }
+        int index = 0;
+        String actual = "new String";
+        objects.set(actual, index);
+        assertEquals(objects.get(index), actual, "Элемент в начале списка должен быть изменён");
+    }
+
+    @Test
+    public void testSetLastElement() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(i);
+        }
+        int index = objects.length() - 1;
+        String actual = "new String";
+        objects.set(actual, index);
+        assertEquals(objects.get(index), actual, "Элемент в в конце списка должен быть изменён");
+    }
+
+    @Test
+    public void testSetElementToNull() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(i);
+        }
+        int index = 0;
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            objects.set(null, index);
+        });
+        assertEquals("Added null", exception.getMessage());
+    }
+
+    @Test
+    public void testSetWithIndexIsNegative() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(i);
+        }
+        int index = -1;
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            objects.set(null, index);
+        });
+        assertEquals("Index: " + index + ", Length: " + objects.length(), exception.getMessage());
+    }
+
+    @Test
+    public void testSetWithIndexIsGreaterLength() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(i);
+        }
+        int index = objects.length() + 1;
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            objects.set(null, index);
+        });
+        assertEquals("Index: " + index + ", Length: " + objects.length(), exception.getMessage());
     }
 }

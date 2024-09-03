@@ -96,7 +96,7 @@ public class ArrayList<T> implements Iterable<T> {
     }
 
     private void validData(int index) {
-        if (index < 0 || index > length + 1)
+        if (index < 0 || index >= length + 1)
             throw new IndexOutOfBoundsException("Index: " + index + ", Length: " + length);
     }
 

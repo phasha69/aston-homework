@@ -1,6 +1,8 @@
 import collections.ArrayList;
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -43,6 +45,19 @@ public class ArrayListTest {
         ArrayList<Object> arrayList2 = new ArrayList<>(arrayList1);
         assertEquals(arrayList1.length(), arrayList2.length(), "Длины двух списков должны совпадать");
         assertEquals(arrayList1.toString(), arrayList2.toString(), "Списки должны быть идентичны");
+    }
+
+    @Test
+    public void testListIterator() {
+        Integer[] ints = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        ArrayList<Integer> integers = new ArrayList<>(ints);
+        Iterator<Integer> iterator = integers.iterator();
+        assertTrue(iterator.hasNext());
+        int i = 0;
+        while (iterator.hasNext()) {
+            assertEquals(i++, iterator.next());
+        }
+        assertFalse(iterator.hasNext());
     }
 
     @Test
@@ -285,7 +300,7 @@ public class ArrayListTest {
         ArrayList<Object> objects = new ArrayList<>();
         String actual = "String obj";
         objects.add(actual);
-        assertTrue(objects.getIndex(actual) >= 0,"Индекс не должен быть отрицательным");
+        assertTrue(objects.getIndex(actual) >= 0, "Индекс не должен быть отрицательным");
 
     }
 
@@ -293,18 +308,18 @@ public class ArrayListTest {
     public void testGetIndexNotExist() {
         ArrayList<Object> objects = new ArrayList<>();
         String actual = "String obj";
-        assertFalse(objects.getIndex(actual) >= 0,"Индекс должен быть отрицательным");
+        assertFalse(objects.getIndex(actual) >= 0, "Индекс должен быть отрицательным");
     }
 
     @Test
     public void testGetIndexElementIsNull() {
         ArrayList<Object> objects = new ArrayList<>();
-        Exception exception = assertThrows(RuntimeException.class, ()-> objects.getIndex(null));
-        assertEquals("Added null",exception.getMessage());
+        Exception exception = assertThrows(RuntimeException.class, () -> objects.getIndex(null));
+        assertEquals("Added null", exception.getMessage());
     }
 
     @Test
-    public void testRemoveByElement(){
+    public void testRemoveByElement() {
         Integer[] ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
         ArrayList<Integer> integers = new ArrayList<>(ints);
         Integer element = 6;
@@ -312,8 +327,9 @@ public class ArrayListTest {
         assertEquals(9, integers.length(), "Длина списка должна быть 9");
         assertEquals("[1, 2, 3, 4, 5, 7, 8, 9, 0]", integers.toString());
     }
+
     @Test
-    public void testRemoveByIndex(){
+    public void testRemoveByIndex() {
         Integer[] ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
         ArrayList<Integer> integers = new ArrayList<>(ints);
         int element = 6;
@@ -321,11 +337,12 @@ public class ArrayListTest {
         assertEquals(9, integers.length(), "Длина списка должна быть 9");
         assertEquals("[1, 2, 3, 4, 5, 6, 8, 9, 0]", integers.toString());
     }
+
     @Test
-    public void testRemoveNull(){
+    public void testRemoveNull() {
         Integer[] ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
         ArrayList<Integer> integers = new ArrayList<>(ints);
-        Exception exception = assertThrows(RuntimeException.class,()-> integers.remove(null));
+        Exception exception = assertThrows(RuntimeException.class, () -> integers.remove(null));
         assertEquals("Added null", exception.getMessage());
     }
 

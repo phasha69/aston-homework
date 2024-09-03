@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>QuickSort.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">homework1</a> &gt; <a href="index.source.html" class="el_package">sort</a> &gt; <span class="el_source">QuickSort.java</span></div><h1>QuickSort.java</h1><pre class="source lang-java linenums">package sort;
+
+import collections.ArrayList;
+
+import java.util.Comparator;
+
+public class QuickSort {
+
+    private QuickSort() {
+    }
+
+    public static &lt;T extends Comparable&lt;T&gt;&gt; void sort(ArrayList&lt;T&gt; list) {
+<span class="fc" id="L13">        sort(list, 0, list.length() - 1);</span>
+<span class="fc" id="L14">    }</span>
+
+
+    private static &lt;T extends Comparable&lt;T&gt;&gt; void sort(ArrayList&lt;T&gt; list, int low, int high) {
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        if (low &lt; high) {</span>
+<span class="fc" id="L19">            int pivotIndex = partition(list, low, high); // центр</span>
+<span class="fc" id="L20">            sort(list, low, pivotIndex - 1); // левый край</span>
+<span class="fc" id="L21">            sort(list, pivotIndex + 1, high); // правый край</span>
+        }
+<span class="fc" id="L23">    }</span>
+
+
+    private static &lt;T extends Comparable&lt;T&gt;&gt; int partition(ArrayList&lt;T&gt; list, int low, int high) {
+<span class="fc" id="L27">        T pivot = list.get(high); // опора</span>
+<span class="fc" id="L28">        int i = low - 1;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        for (int j = low; j &lt; high; j++) {</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">            if (list.get(j).compareTo(pivot) &lt;= 0) {</span>
+<span class="fc" id="L31">                i++;</span>
+<span class="fc" id="L32">                swap(list, i, j);</span>
+            }
+        }
+<span class="fc" id="L35">        swap(list, i + 1, high);</span>
+<span class="fc" id="L36">        return i + 1;</span>
+    }
+
+    public static &lt;T&gt; void sort(ArrayList&lt;T&gt; list, Comparator&lt;T&gt; comparator) {
+<span class="fc" id="L40">        sort(list, 0, list.length() -1, comparator);</span>
+<span class="fc" id="L41">    }</span>
+
+    private static &lt;T&gt; void sort(ArrayList&lt;T&gt; list, int low, int high, Comparator&lt;T&gt; comparator) {
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (low &lt; high) {</span>
+<span class="fc" id="L45">            int pivotIndex = partition(list, low, high, comparator); // центр</span>
+<span class="fc" id="L46">            sort(list, low, pivotIndex - 1,comparator); // левый край</span>
+<span class="fc" id="L47">            sort(list, pivotIndex + 1, high,comparator); // правый край</span>
+        }
+<span class="fc" id="L49">    }</span>
+
+    private static &lt;T&gt; int partition(ArrayList&lt;T&gt; list, int low, int high, Comparator&lt;T&gt; comparator) {
+<span class="fc" id="L52">        T pivot = list.get(high); // опора</span>
+<span class="fc" id="L53">        int i = low - 1;</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        for (int j = low; j &lt; high; j++) {</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">            if (comparator.compare(list.get(j), pivot) &lt;= 0) {</span>
+<span class="fc" id="L56">                i++;</span>
+<span class="fc" id="L57">                swap(list, i, j);</span>
+            }
+        }
+<span class="fc" id="L60">        swap(list, i + 1, high);</span>
+<span class="fc" id="L61">        return i + 1;</span>
+    }
+
+    private static &lt;T&gt; void swap(ArrayList&lt;T&gt; list, int i, int j) {
+<span class="fc" id="L65">        T temp = list.get(i);</span>
+<span class="fc" id="L66">        list.set(list.get(j), i);</span>
+<span class="fc" id="L67">        list.set(temp, j);</span>
+<span class="fc" id="L68">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

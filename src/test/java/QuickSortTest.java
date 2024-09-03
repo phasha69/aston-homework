@@ -18,7 +18,6 @@ public class QuickSortTest {
     public void testSortWithComparator() {
         ArrayList<Integer> list = new ArrayList<>(integers);
         QuickSort.sort(list, (o1, o2) -> Integer.compare(o2, o1));
-        System.out.println(list);
         assertEquals("[234, 23, 12, 5, 4, 4, 3, 2, 1, 1, 0, -5, -46]", list.toString());
     }
 }

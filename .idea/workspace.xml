@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b060f946-485a-4a47-a94d-a599f77f7f4c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/homework1/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework1/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework1/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework1/src/main/java/collections/ArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/collections/ArrayList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework1/src/main/java/collections/HashMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/collections/HashMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework1/src/main/java/sort/QuickSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sort/QuickSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework1/src/test/java/ArrayListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ArrayListTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2lNjmSeOrpXa0U1mH5TskH1Gwlk" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "JUnit.ArrayListTest.TestConstructors.executor": "Run",
+    "JUnit.ArrayListTest.TestCreate.executor": "Run",
+    "JUnit.ArrayListTest.executor": "Run",
+    "JUnit.ArrayListTest.getIndexElementIsNull.executor": "Run",
+    "JUnit.ArrayListTest.getIndexExist.executor": "Run",
+    "JUnit.ArrayListTest.getIndexNotExist.executor": "Run",
+    "JUnit.ArrayListTest.testAdd.executor": "Run",
+    "JUnit.ArrayListTest.testAddNull.executor": "Run",
+    "JUnit.ArrayListTest.testAddWithIndex.executor": "Run",
+    "JUnit.ArrayListTest.testAddWithIndexIsGreaterLength.executor": "Run",
+    "JUnit.ArrayListTest.testClear.executor": "Run",
+    "JUnit.ArrayListTest.testConstructorWithNegativeInitialCapacity.executor": "Run",
+    "JUnit.ArrayListTest.testContains.executor": "Run",
+    "JUnit.ArrayListTest.testContainsIsFalse.executor": "Run",
+    "JUnit.ArrayListTest.testContainsNull.executor": "Run",
+    "JUnit.ArrayListTest.testGet.executor": "Run",
+    "JUnit.ArrayListTest.testGetWithIndexIsEqualsLength.executor": "Run",
+    "JUnit.ArrayListTest.testGetWithIndexIsGreaterLength.executor": "Run",
+    "JUnit.ArrayListTest.testGetWithIndexIsNegative.executor": "Run",
+    "JUnit.ArrayListTest.testRemoveByElement.executor": "Run",
+    "JUnit.ArrayListTest.testRemoveByIndex.executor": "Run",
+    "JUnit.ArrayListTest.testRemoveNull.executor": "Run",
+    "JUnit.ArrayListTest.testSetElementToNull.executor": "Run",
+    "JUnit.ArrayListTest.testSetMidElement.executor": "Run",
+    "JUnit.ArrayListTest.testSetWithIndexIsGreaterLength.executor": "Run",
+    "JUnit.ArrayListTest.testSetWithIndexIsNegative.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Pavel/Desktop/Aston/aston-homework"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Pavel\Desktop\Aston\aston-homework" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.ArrayListTest">
+    <configuration name="ArrayListTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="homework1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ArrayListTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArrayListTest.getIndexExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="homework1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ArrayListTest" />
+      <option name="METHOD_NAME" value="getIndexExist" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArrayListTest.testRemoveByElement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="homework1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ArrayListTest" />
+      <option name="METHOD_NAME" value="testRemoveByElement" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArrayListTest.testRemoveByIndex" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="homework1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ArrayListTest" />
+      <option name="METHOD_NAME" value="testRemoveByIndex" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArrayListTest.testRemoveNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="homework1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ArrayListTest" />
+      <option name="METHOD_NAME" value="testRemoveNull" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ArrayListTest" />
+        <item itemvalue="JUnit.ArrayListTest.testRemoveNull" />
+        <item itemvalue="JUnit.ArrayListTest.testRemoveByIndex" />
+        <item itemvalue="JUnit.ArrayListTest.testRemoveByElement" />
+        <item itemvalue="JUnit.ArrayListTest.getIndexExist" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b060f946-485a-4a47-a94d-a599f77f7f4c" name="Changes" comment="" />
+      <created>1725027589022</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1725027589022</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

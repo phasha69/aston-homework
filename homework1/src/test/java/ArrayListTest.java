@@ -3,8 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ArrayListTest {
@@ -263,4 +262,49 @@ public class ArrayListTest {
         });
         assertEquals("Index: " + index + ", Length: " + objects.length(), exception.getMessage());
     }
+
+    @Test
+    public void testClear() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(i);
+        }
+        objects.clear();
+        assertEquals(0, objects.length(), "Длина нового списка должна быть 0");
+        assertEquals("[]", objects.toString(), "Пустой список должен представляться как '[]'");
+    }
+
+    @Test
+    public void testContainsIsTrue() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(i);
+        }
+        String actual = "String obj";
+        objects.add(actual);
+        assertTrue(objects.contains(actual), "Объект должен быть найден");
+    }
+
+    @Test
+    public void testContainsIsFalse() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(i);
+        }
+        String actual = "String obj";
+        assertFalse(objects.contains(actual), "Объект не должен быть найден");
+    }
+
+    @Test
+    public void testContainsNull() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(i);
+        }
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            objects.contains(null);
+        });
+        assertEquals("Added null", exception.getMessage());
+    }
+
 }

@@ -1,16 +1,10 @@
 import collections.ArrayList;
-import com.sun.jdi.event.ExceptionEvent;
 import org.junit.jupiter.api.Test;
-
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ArrayListTest {
-
-    private final Random rnd = new Random();
-
 
     @Test
     public void TestConstructorWithoutParameter() {
@@ -28,9 +22,7 @@ public class ArrayListTest {
 
     @Test
     public void testConstructorWithNegativeInitialCapacity() {
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            new ArrayList<>(-1);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> new ArrayList<>(-1));
         {
             assertEquals("Initial capacity cannot be negative", exception.getMessage());
         }
@@ -65,9 +57,7 @@ public class ArrayListTest {
     @Test
     public void testAddNull() {
         ArrayList<Object> objects = new ArrayList<>();
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            objects.add(null);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> objects.add(null));
         assertEquals("Added null", exception.getMessage());
 
     }
@@ -116,9 +106,7 @@ public class ArrayListTest {
         }
         String actual = "String Object";
         int index = -1;
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            objects.add(actual, index);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> objects.add(actual, index));
         assertEquals("Index: " + index + ", Length: " + objects.length(), exception.getMessage());
 
     }
@@ -132,9 +120,7 @@ public class ArrayListTest {
         String actual = "String Object";
         int index = objects.length() + 1;  // Индекс, превышающий длину списка
 
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            objects.add(actual, index);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> objects.add(actual, index));
 
         // Проверка того, что сообщение об ошибке соответствует ожидаемому формату
         assertEquals("Index: " + index + ", Length: " + objects.length(), exception.getMessage());
@@ -157,9 +143,7 @@ public class ArrayListTest {
             objects.add(i);
         }
         int index = -1;
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            objects.get(index);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> objects.get(index));
         assertEquals("Index: " + index + ", Length: " + objects.length(), exception.getMessage());
     }
 
@@ -170,9 +154,7 @@ public class ArrayListTest {
             objects.add(i);
         }
         int index = objects.length();
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            objects.get(index);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> objects.get(index));
         assertEquals("Index " + index + " out of bounds for length " + objects.length(), exception.getMessage());
     }
 
@@ -183,9 +165,7 @@ public class ArrayListTest {
             objects.add(i);
         }
         int index = objects.length() + 1;
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            objects.get(index);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> objects.get(index));
         assertEquals("Index: " + index + ", Length: " + objects.length(), exception.getMessage());
     }
 
@@ -232,9 +212,7 @@ public class ArrayListTest {
             objects.add(i);
         }
         int index = 0;
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            objects.set(null, index);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> objects.set(null, index));
         assertEquals("Added null", exception.getMessage());
     }
 
@@ -245,9 +223,7 @@ public class ArrayListTest {
             objects.add(i);
         }
         int index = -1;
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            objects.set(null, index);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> objects.set(null, index));
         assertEquals("Index: " + index + ", Length: " + objects.length(), exception.getMessage());
     }
 
@@ -258,9 +234,7 @@ public class ArrayListTest {
             objects.add(i);
         }
         int index = objects.length() + 1;
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            objects.set(null, index);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> objects.set(null, index));
         assertEquals("Index: " + index + ", Length: " + objects.length(), exception.getMessage());
     }
 
@@ -302,9 +276,7 @@ public class ArrayListTest {
         for (int i = 0; i < 10; i++) {
             objects.add(i);
         }
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            objects.contains(null);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> objects.contains(null));
         assertEquals("Added null", exception.getMessage());
     }
 
@@ -327,7 +299,7 @@ public class ArrayListTest {
     @Test
     public void testGetIndexElementIsNull() {
         ArrayList<Object> objects = new ArrayList<>();
-        Exception exception = assertThrows(RuntimeException.class, ()->{objects.getIndex(null);});
+        Exception exception = assertThrows(RuntimeException.class, ()-> objects.getIndex(null));
         assertEquals("Added null",exception.getMessage());
     }
 
@@ -353,7 +325,7 @@ public class ArrayListTest {
     public void testRemoveNull(){
         Integer[] ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
         ArrayList<Integer> integers = new ArrayList<>(ints);
-        Exception exception = assertThrows(RuntimeException.class,()->{integers.remove(null);});
+        Exception exception = assertThrows(RuntimeException.class,()-> integers.remove(null));
         assertEquals("Added null", exception.getMessage());
     }
 

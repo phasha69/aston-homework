@@ -1,4 +1,5 @@
 import collections.ArrayList;
+import com.sun.jdi.event.ExceptionEvent;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
@@ -308,7 +309,7 @@ public class ArrayListTest {
     }
 
     @Test
-    public void getIndexExist() {
+    public void testGetIndexExist() {
         ArrayList<Object> objects = new ArrayList<>();
         String actual = "String obj";
         objects.add(actual);
@@ -317,17 +318,43 @@ public class ArrayListTest {
     }
 
     @Test
-    public void getIndexNotExist() {
+    public void testGetIndexNotExist() {
         ArrayList<Object> objects = new ArrayList<>();
         String actual = "String obj";
         assertFalse(objects.getIndex(actual) >= 0,"Индекс должен быть отрицательным");
     }
 
     @Test
-    public void getIndexElementIsNull() {
+    public void testGetIndexElementIsNull() {
         ArrayList<Object> objects = new ArrayList<>();
         Exception exception = assertThrows(RuntimeException.class, ()->{objects.getIndex(null);});
         assertEquals("Added null",exception.getMessage());
+    }
+
+    @Test
+    public void testRemoveByElement(){
+        Integer[] ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+        ArrayList<Integer> integers = new ArrayList<>(ints);
+        Integer element = 6;
+        integers.remove(element);
+        assertEquals(9, integers.length(), "Длина списка должна быть 9");
+        assertEquals("[1, 2, 3, 4, 5, 7, 8, 9, 0]", integers.toString());
+    }
+    @Test
+    public void testRemoveByIndex(){
+        Integer[] ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+        ArrayList<Integer> integers = new ArrayList<>(ints);
+        int element = 6;
+        integers.remove(element);
+        assertEquals(9, integers.length(), "Длина списка должна быть 9");
+        assertEquals("[1, 2, 3, 4, 5, 6, 8, 9, 0]", integers.toString());
+    }
+    @Test
+    public void testRemoveNull(){
+        Integer[] ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+        ArrayList<Integer> integers = new ArrayList<>(ints);
+        Exception exception = assertThrows(RuntimeException.class,()->{integers.remove(null);});
+        assertEquals("Added null", exception.getMessage());
     }
 
 }

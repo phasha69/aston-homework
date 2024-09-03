@@ -1,26 +1,19 @@
 
 import collections.ArrayList;
-import customclasses.Person;
-import customclasses.PersonAgeComparator;
 import sort.QuickSort;
+
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
         int count = 10;
-        ArrayList<Person> persons = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            persons.add(Person.createRandomPerson());
+            list.add(new Random().nextInt());
         }
-        persons.forEach(System.out::println);
-
+        list.forEach(System.out::println);
         System.out.println();
-
-        QuickSort.sort(persons);
-        persons.forEach(System.out::println);
-
-        System.out.println();
-
-        QuickSort.sort(persons,new PersonAgeComparator());
-        persons.forEach(System.out::println);
+        QuickSort.sort(list, (o1, o2) -> Integer.compare(o2,o1));
+        list.forEach(System.out::println);
     }
 }

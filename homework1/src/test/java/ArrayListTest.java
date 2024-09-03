@@ -1,11 +1,15 @@
 import collections.ArrayList;
-import customclasses.Person;
 import org.junit.jupiter.api.Test;
+
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class ArrayListTest {
+
+    private final Random rnd = new Random();
+
 
     @Test
     public void TestConstructorWithoutParameter() {
@@ -40,7 +44,7 @@ public class ArrayListTest {
 
     @Test
     public void testConstructorWithArrayList() {
-        Object[] objects = {new Object(), new Object(), new Person("Person", 18)};
+        Object[] objects = {new Object(), new Object(), 1, "123"};
         ArrayList<Object> arrayList1 = new ArrayList<>(objects);
         ArrayList<Object> arrayList2 = new ArrayList<>(arrayList1);
         assertEquals(arrayList1.length(), arrayList2.length());
@@ -49,6 +53,105 @@ public class ArrayListTest {
 
     @Test
     public void testAdd() {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 1000; i++) {
+            list.add(i);
+        }
+        assertEquals(1000, list.length());
+    }
+
+    @Test
+    public void testAddNull() {
+        ArrayList<Object> objects = new ArrayList<>();
+        try {
+            objects.add(null);
+        } catch (RuntimeException e) {
+            assertEquals("Added null", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testAddWithIndexMid() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(new Object());
+        }
+        String actual = "String Object";
+        int index = objects.length() / 2;
+        objects.add(actual, index);
+        assertEquals(objects.get(index), actual);
+
+        try {
+            index = -1;
+            objects.add(actual, index);
+            assertEquals(objects.get(index), actual);
+        } catch (RuntimeException e) {
+            assertEquals("Index: " + index + ", Length: " + objects.length(), e.getMessage());
+        }
+
+        try {
+            index = objects.length() + 1;
+            objects.add(actual, index);
+            assertEquals(objects.get(index), actual);
+        } catch (RuntimeException e) {
+            assertEquals("Index: " + index + ", Length: " + objects.length(), e.getMessage());
+        }
+
+    }
+
+    @Test
+    public void testAddWithIndexZero() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(new Object());
+        }
+        String actual = "String Object";
+        int index = 0;
+        objects.add(actual, index);
+        assertEquals(objects.get(index), actual);
+    }
+
+    @Test
+    public void testAddWithIndexLength() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(new Object());
+        }
+        String actual = "String Object";
+        int index = objects.length();
+        objects.add(actual, index);
+        assertEquals(objects.get(index), actual);
+    }
+
+    @Test
+    public void testAddWithIndexIsNegative() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(new Object());
+        }
+        String actual = "String Object";
+        int index = -1;
+        try {
+            objects.add(actual, index);
+        } catch (RuntimeException e) {
+            assertEquals("Index: " + index + ", Length: " + objects.length(), e.getMessage());
+        }
+
+    }
+
+    @Test
+    public void testAddWithIndexIsGreaterLength() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(new Object());
+        }
+        String actual = "String Object";
+        int index = objects.length()+1;
+        try {
+            objects.add(actual, index);
+        } catch (RuntimeException e) {
+            assertEquals("Index: " + index + ", Length: " + objects.length(), e.getMessage());
+        }
 
     }
 }

@@ -80,23 +80,6 @@ public class ArrayListTest {
         int index = objects.length() / 2;
         objects.add(actual, index);
         assertEquals(objects.get(index), actual);
-
-        try {
-            index = -1;
-            objects.add(actual, index);
-            assertEquals(objects.get(index), actual);
-        } catch (RuntimeException e) {
-            assertEquals("Index: " + index + ", Length: " + objects.length(), e.getMessage());
-        }
-
-        try {
-            index = objects.length() + 1;
-            objects.add(actual, index);
-            assertEquals(objects.get(index), actual);
-        } catch (RuntimeException e) {
-            assertEquals("Index: " + index + ", Length: " + objects.length(), e.getMessage());
-        }
-
     }
 
     @Test
@@ -136,7 +119,6 @@ public class ArrayListTest {
         } catch (RuntimeException e) {
             assertEquals("Index: " + index + ", Length: " + objects.length(), e.getMessage());
         }
-
     }
 
     @Test
@@ -146,12 +128,60 @@ public class ArrayListTest {
             objects.add(new Object());
         }
         String actual = "String Object";
-        int index = objects.length()+1;
+        int index = objects.length() + 1;
         try {
             objects.add(actual, index);
         } catch (RuntimeException e) {
             assertEquals("Index: " + index + ", Length: " + objects.length(), e.getMessage());
         }
+    }
 
+    @Test
+    public void testGet() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(i);
+        }
+        Object actual = objects.get(3);
+        assertEquals(3, actual);
+    }
+
+    @Test
+    public void testGetWithIndexIsNegative() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(i);
+        }
+        try {
+            Object actual = objects.get(-3);
+        } catch (RuntimeException e) {
+            assertEquals("Index: " + -3 + ", Length: " + objects.length(), e.getMessage());
+        }
+    }
+
+    @Test
+    public void testGetWithIndexIsEqualsLength() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(i);
+        }
+        try {
+            Object actual = objects.get(objects.length());
+        } catch (RuntimeException e) {
+            assertEquals("Index " + objects.length() + " out of bounds for length " + objects.length(), e.getMessage());
+        }
+    }
+
+    @Test
+    public void testGetWithIndexIsGreaterLength() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            objects.add(i);
+        }
+        try {
+            Object actual = objects.get(objects.length() + 1);
+        } catch (RuntimeException e) {
+            assertEquals("Index " + (objects.length() + 1) + " out of bounds for length " + objects.length(), e.getMessage());
+        }
     }
 }

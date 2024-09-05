@@ -16,7 +16,8 @@ public class ArrayList<T> implements Iterable<T> {
      * Конструктор по умолчанию. Инициализирует массив с размером по умолчанию 10.
      */
     public ArrayList() {
-        this.array = (T[]) new Object[10];
+        int INITIAL_CAPACITY = 10;
+        this.array = (T[]) new Object[INITIAL_CAPACITY];
         this.length = 0;
     }
 
@@ -70,7 +71,6 @@ public class ArrayList<T> implements Iterable<T> {
      * @throws IllegalArgumentException если элемент равен null
      */
     public void add(T item) {
-        validData(item);
         ensureCapacity(length + 1);
         array[length++] = item;
     }
@@ -84,7 +84,7 @@ public class ArrayList<T> implements Iterable<T> {
      * @throws IllegalArgumentException  если элемент равен null
      */
     public void add(T item, int index) {
-        validData(index, item);
+        validIndex(index);
         ensureCapacity(length + 1);
         if (index < length) {
             System.arraycopy(array, index, array, index + 1, length - index);
@@ -101,7 +101,7 @@ public class ArrayList<T> implements Iterable<T> {
      * @throws IndexOutOfBoundsException если индекс выходит за границы списка
      */
     public T get(int index) {
-        validData(index);
+        validIndex(index);
         return array[index];
     }
 
@@ -114,7 +114,7 @@ public class ArrayList<T> implements Iterable<T> {
      * @throws IllegalArgumentException  если элемент равен null
      */
     public void set(T item, int index) {
-        validData(index, item);
+        validIndex(index);
         array[index] = item;
     }
 
@@ -145,7 +145,6 @@ public class ArrayList<T> implements Iterable<T> {
      * @throws IllegalArgumentException если элемент равен null
      */
     public int getIndex(T item) {
-        validData(item);
         for (int i = 0; i < length; i++) {
             if (array[i].equals(item)) return i;
         }
@@ -171,23 +170,11 @@ public class ArrayList<T> implements Iterable<T> {
      * @throws IndexOutOfBoundsException если индекс выходит за границы списка
      */
     public void remove(int index) {
-        validData(index);
+        validIndex(index);
         System.arraycopy(array, index + 1, array, index, length - index - 1);
         array[--length] = null;
     }
 
-    /**
-     * Проверяет корректность индекса и элемента.
-     *
-     * @param index индекс для проверки
-     * @param item  элемент для проверки
-     * @throws IndexOutOfBoundsException если индекс выходит за границы
-     * @throws IllegalArgumentException  если элемент равен null
-     */
-    private void validData(int index, T item) {
-        validData(index);
-        validData(item);
-    }
 
     /**
      * Проверяет, находится ли индекс в допустимых пределах.
@@ -195,19 +182,9 @@ public class ArrayList<T> implements Iterable<T> {
      * @param index индекс для проверки
      * @throws IndexOutOfBoundsException если индекс выходит за границы
      */
-    private void validData(int index) {
+    private void validIndex(int index) {
         if (index < 0 || index >= length + 1)
             throw new IndexOutOfBoundsException("Index: " + index + ", Length: " + length);
-    }
-
-    /**
-     * Проверяет, что элемент не равен null.
-     *
-     * @param item элемент для проверки
-     * @throws IllegalArgumentException если элемент равен null
-     */
-    private void validData(T item) {
-        if (item == null) throw new IllegalArgumentException("Added null");
     }
 
     /**

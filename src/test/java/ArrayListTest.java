@@ -69,13 +69,13 @@ public class ArrayListTest {
         assertEquals(1000, list.length(), "Длина списка должна быть 1000 после добавления 1000 элементов");
     }
 
-    @Test
-    public void testAddNull() {
-        ArrayList<Object> objects = new ArrayList<>();
-        Exception exception = assertThrows(RuntimeException.class, () -> objects.add(null));
-        assertEquals("Added null", exception.getMessage());
-
-    }
+//    @Test
+//    public void testAddNull() {
+//        ArrayList<Object> objects = new ArrayList<>();
+//        Exception exception = assertThrows(RuntimeException.class, () -> objects.add(null));
+//        assertEquals("Added null", exception.getMessage());
+//
+//    }
 
     @Test
     public void testAddWithIndexMid() {
@@ -220,16 +220,16 @@ public class ArrayListTest {
         assertEquals(objects.get(index), actual, "Элемент в в конце списка должен быть изменён");
     }
 
-    @Test
-    public void testSetElementToNull() {
-        ArrayList<Object> objects = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            objects.add(i);
-        }
-        int index = 0;
-        Exception exception = assertThrows(RuntimeException.class, () -> objects.set(null, index));
-        assertEquals("Added null", exception.getMessage());
-    }
+//    @Test
+//    public void testSetElementToNull() {
+//        ArrayList<Object> objects = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            objects.add(i);
+//        }
+//        int index = 0;
+//        Exception exception = assertThrows(RuntimeException.class, () -> objects.set(null, index));
+//        assertEquals("Added null", exception.getMessage());
+//    }
 
     @Test
     public void testSetWithIndexIsNegative() {
@@ -285,15 +285,15 @@ public class ArrayListTest {
         assertFalse(objects.contains(actual), "Объект не должен быть найден");
     }
 
-    @Test
-    public void testContainsNull() {
-        ArrayList<Object> objects = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            objects.add(i);
-        }
-        Exception exception = assertThrows(RuntimeException.class, () -> objects.contains(null));
-        assertEquals("Added null", exception.getMessage());
-    }
+//    @Test
+//    public void testContainsNull() {
+//        ArrayList<Object> objects = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            objects.add(i);
+//        }
+//        Exception exception = assertThrows(RuntimeException.class, () -> objects.contains(null));
+//        assertEquals("Added null", exception.getMessage());
+//    }
 
     @Test
     public void testGetIndexExist() {
@@ -311,12 +311,12 @@ public class ArrayListTest {
         assertFalse(objects.getIndex(actual) >= 0, "Индекс должен быть отрицательным");
     }
 
-    @Test
-    public void testGetIndexElementIsNull() {
-        ArrayList<Object> objects = new ArrayList<>();
-        Exception exception = assertThrows(RuntimeException.class, () -> objects.getIndex(null));
-        assertEquals("Added null", exception.getMessage());
-    }
+//    @Test
+//    public void testGetIndexElementIsNull() {
+//        ArrayList<Object> objects = new ArrayList<>();
+//        Exception exception = assertThrows(RuntimeException.class, () -> objects.getIndex(null));
+//        assertEquals("Added null", exception.getMessage());
+//    }
 
     @Test
     public void testRemoveByElement() {
@@ -338,12 +338,12 @@ public class ArrayListTest {
         assertEquals("[1, 2, 3, 4, 5, 6, 8, 9, 0]", integers.toString());
     }
 
-    @Test
-    public void testRemoveNull() {
-        Integer[] ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
-        ArrayList<Integer> integers = new ArrayList<>(ints);
-        Exception exception = assertThrows(RuntimeException.class, () -> integers.remove(null));
-        assertEquals("Added null", exception.getMessage());
-    }
+//    @Test
+//    public void testRemoveNull() {
+//        Integer[] ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+//        ArrayList<Integer> integers = new ArrayList<>(ints);
+//        Exception exception = assertThrows(RuntimeException.class, () -> integers.remove(null));
+//        assertEquals("Added null", exception.getMessage());
+//    }
 
 }

@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"collections","l":"ArrayList"},{"p":"collections","l":"HashMap"},{"p":"<Unnamed>","l":"Main"},{"p":"sort","l":"QuickSort"}];updateSearchResults();
